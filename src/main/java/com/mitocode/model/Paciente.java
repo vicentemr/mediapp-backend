@@ -17,11 +17,11 @@ public class Paciente {
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private Integer idPaciente;
 	
-	@Size(min = 3, message = "Nombres deben tener mínimo 3 caracteres.")
+	@Size(min = 3, message = "{nombres.size}")
 	@Column(name = "nombres", nullable = false, length = 70)
 	private String nombres;
 	
-	@Size(min = 3, message = "Apellidos deben tener mínimo 3 caracteres.")
+	@Size(min = 3, message = "{apellidos.size}")
 	@Column(name = "apellidos", nullable = false, length = 70)
 	private String apellidos;
 	

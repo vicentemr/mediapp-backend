@@ -1,6 +1,7 @@
 package com.mitocode.exception;
 
 import java.time.LocalDateTime;
+import java.util.stream.Collectors;
 
 import org.springframework.http.HttpHeaders;
 import org.springframework.http.HttpStatus;
@@ -15,8 +16,6 @@ import org.springframework.web.servlet.mvc.method.annotation.ResponseEntityExcep
 @ControllerAdvice
 @RestController
 public class ResponseExceptionHandler extends ResponseEntityExceptionHandler {
-
-	String mensaje = "";
 	
 	@ExceptionHandler(Exception.class)
 	public final ResponseEntity<ExceptionResponse> manejarTodasExcepciones(Exception ex, WebRequest request){
@@ -36,13 +35,14 @@ public class ResponseExceptionHandler extends ResponseEntityExceptionHandler {
 	protected ResponseEntity<Object> handleMethodArgumentNotValid(MethodArgumentNotValidException ex,
 			HttpHeaders headers, HttpStatus status, WebRequest request) {
 		
-		ex.getBindingResult().getAllErrors().forEach(e -> {
-			mensaje += e.getDefaultMessage().toString() + " \n";
-		});
+		String mensaje = ex.getBindingResult().getAllErrors().stream().map(e -> { 
+			return e.getDefaultMessage().toString().concat(", ");
+			}).collect(Collectors.joining());
 		
 		ExceptionResponse er = new ExceptionResponse(LocalDateTime.now(), mensaje, request.getDescription(false));
 		return new ResponseEntity<Object>(er, HttpStatus.BAD_REQUEST);
 
 	}
+	
 	
 }
