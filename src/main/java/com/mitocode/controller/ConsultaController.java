@@ -66,7 +66,7 @@ public class ConsultaController {
 		return new ResponseEntity<Consulta>(obj, HttpStatus.OK);
 	}
 	
-	@DeleteMapping("/id")
+	@DeleteMapping("/{id}")
 	public ResponseEntity<Void> eliminar(@PathVariable("id") Integer id) throws Exception{
 		Consulta obj = service.listarPorId(id);
 		if(obj == null) {

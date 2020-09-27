@@ -6,7 +6,8 @@ import com.mitocode.model.Consulta;
 import com.mitocode.model.Examen;
 
 public class ConsultaListaExamenDTO {
-
+	
+	//JsonProperty("abc")
 	private Consulta consulta;
 	private List<Examen> lstExamen;
 	

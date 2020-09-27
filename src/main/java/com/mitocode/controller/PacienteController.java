@@ -65,7 +65,7 @@ public class PacienteController {
 		return new ResponseEntity<Paciente>(obj, HttpStatus.OK);
 	}
 	
-	@DeleteMapping("/id")
+	@DeleteMapping("/{id}")
 	public ResponseEntity<Void> eliminar(@PathVariable("id") Integer id) throws Exception{
 		Paciente obj = service.listarPorId(id);
 		if(obj == null) {
