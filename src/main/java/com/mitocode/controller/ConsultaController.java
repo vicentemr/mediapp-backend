@@ -1,6 +1,7 @@
 package com.mitocode.controller;
 
 import java.net.URI;
+import java.util.ArrayList;
 import java.util.List;
 
 import javax.validation.Valid;
@@ -19,6 +20,8 @@ import org.springframework.web.bind.annotation.RestController;
 import org.springframework.web.servlet.support.ServletUriComponentsBuilder;
 
 import com.mitocode.dto.ConsultaListaExamenDTO;
+import com.mitocode.dto.ConsultaResumenDTO;
+import com.mitocode.dto.FiltroConsultaDTO;
 import com.mitocode.exception.ModeloNotFoundException;
 import com.mitocode.model.Consulta;
 import com.mitocode.service.IConsultaService;
@@ -74,5 +77,28 @@ public class ConsultaController {
 		}
 		service.eliminar(id);
 		return new ResponseEntity<Void>(HttpStatus.NO_CONTENT);
+	}
+	
+	@PostMapping("/buscar")
+	public ResponseEntity<List<Consulta>> buscar(@RequestBody FiltroConsultaDTO filtro) {
+		
+		List<Consulta> consultas = new ArrayList<>();
+		
+		if (filtro != null) {
+			if (filtro.getFechaConsulta() != null) {
+				consultas = service.buscarFecha(filtro);
+			} else {
+				consultas = service.buscar(filtro);
+			}
+		}
+		
+		return new ResponseEntity<List<Consulta>>(consultas, HttpStatus.OK);
+	}
+	
+	@GetMapping(value = "/listarResumen")
+	public ResponseEntity<List<ConsultaResumenDTO>> listarResumen() {
+		List<ConsultaResumenDTO> consultas = new ArrayList<>();
+		consultas = service.listarResumen();
+		return new ResponseEntity<List<ConsultaResumenDTO>>(consultas, HttpStatus.OK);
 	}
 }
