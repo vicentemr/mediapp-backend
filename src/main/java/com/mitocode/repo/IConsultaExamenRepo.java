@@ -12,7 +12,7 @@ import com.mitocode.model.ConsultaExamen;
 
 public interface IConsultaExamenRepo extends IGenericRepo<ConsultaExamen, Integer>{
 
-	@Transactional
+	//@Transactional
 	@Modifying
 	@Query(value = "INSERT INTO consulta_examen(id_consulta, id_examen) VALUES (:idConsulta, :idExamen)", nativeQuery = true)
 	Integer registrar(@Param("idConsulta") Integer idConsulta, @Param("idExamen") Integer idExamen);

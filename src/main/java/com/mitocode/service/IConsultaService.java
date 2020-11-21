@@ -16,4 +16,6 @@ public interface IConsultaService extends ICRUD<Consulta, Integer>{
 	List<Consulta> buscarFecha(FiltroConsultaDTO filtro);
 	
 	List<ConsultaResumenDTO> listarResumen();
+	
+	byte [] generarReporte();
 }

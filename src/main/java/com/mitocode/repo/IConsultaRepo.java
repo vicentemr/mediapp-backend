@@ -10,7 +10,7 @@ import com.mitocode.model.Consulta;
 
 public interface IConsultaRepo extends IGenericRepo<Consulta, Integer>{
 
-	//@Query()JPQL
+	//@Query(JPQL)
 	//SELECT p.* FROM CONSULTA C INNER JOIN PACIENTE P ON C.ID_PACIENTE = P.ID_PACIENTE WHERE P.DNI = ?
 	//Voy a la ENTIDAD consulta
 	//@Param para identificar parámetros

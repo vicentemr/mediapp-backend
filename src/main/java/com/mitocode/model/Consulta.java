@@ -119,6 +119,12 @@ public class Consulta {
 			return false;
 		if (getClass() != obj.getClass())
 			return false;
+		Consulta other = (Consulta) obj;
+		if (idConsulta == null) {
+			if (other.idConsulta != null)
+				return false;
+		} else if (!idConsulta.equals(other.idConsulta))
+			return false;
 		return true;
 	}
 	
