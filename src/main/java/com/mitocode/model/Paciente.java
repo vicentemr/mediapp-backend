@@ -7,8 +7,12 @@ import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.Table;
 import javax.validation.constraints.Email;
+import javax.validation.constraints.NotNull;
 import javax.validation.constraints.Size;
 
+import io.swagger.v3.oas.annotations.media.Schema;
+
+@Schema(description = "Información del paciente")
 @Entity
 @Table(name = "paciente")
 public class Paciente {
@@ -17,10 +21,12 @@ public class Paciente {
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private Integer idPaciente;
 	
+	@Schema(description = "nombres del paciente")
 	@Size(min = 3, message = "{nombres.size}")
 	@Column(name = "nombres", nullable = false, length = 70)
 	private String nombres;
 	
+	@NotNull
 	@Size(min = 3, message = "{apellidos.size}")
 	@Column(name = "apellidos", nullable = false, length = 70)
 	private String apellidos;

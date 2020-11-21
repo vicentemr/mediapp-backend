@@ -1,24 +1,35 @@
 package com.mitocode.model;
 
+import java.util.List;
+
 import javax.persistence.Column;
 import javax.persistence.Entity;
+import javax.persistence.FetchType;
 import javax.persistence.Id;
+import javax.persistence.JoinColumn;
+import javax.persistence.JoinTable;
+import javax.persistence.ManyToMany;
 import javax.persistence.Table;
 
 @Entity
 @Table(name = "usuario")
 public class Usuario {
+
 	@Id
 	private Integer idUsuario;
-	
-	@Column(name = "username", nullable = false, unique = true)
+
+	@Column(name = "nombre", nullable = false, unique = true)
 	private String username;
-	
-	@Column(name = "password", nullable = false)
+
+	@Column(name = "clave", nullable = false)
 	private String password;
-	
+
 	@Column(name = "estado", nullable = false)
-	private boolean enable;
+	private boolean enabled;
+
+	@ManyToMany(fetch = FetchType.EAGER)
+	@JoinTable(name = "usuario_rol", joinColumns = @JoinColumn(name = "id_usuario", referencedColumnName = "idUsuario"), inverseJoinColumns = @JoinColumn(name = "id_rol", referencedColumnName = "idRol"))
+	private List<Rol> roles;
 
 	public Integer getIdUsuario() {
 		return idUsuario;
@@ -44,13 +55,20 @@ public class Usuario {
 		this.password = password;
 	}
 
-	public boolean isEnable() {
-		return enable;
+	public boolean isEnabled() {
+		return enabled;
 	}
 
-	public void setEnable(boolean enable) {
-		this.enable = enable;
+	public void setEnabled(boolean enabled) {
+		this.enabled = enabled;
+	}
+
+	public List<Rol> getRoles() {
+		return roles;
+	}
+
+	public void setRoles(List<Rol> roles) {
+		this.roles = roles;
 	}
 
 }
-
