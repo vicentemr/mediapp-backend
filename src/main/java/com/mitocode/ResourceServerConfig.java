@@ -36,15 +36,16 @@ public class ResourceServerConfig extends ResourceServerConfigurerAdapter{
                 .authorizeRequests()                  
                 .antMatchers("/v2/api-docs/**" ).permitAll()
                 .antMatchers("/v3/api-docs/**" ).permitAll()
-                .antMatchers("/consultas/**" ).authenticated()                
-                .antMatchers("/especialidades/**" ).authenticated()
-                .antMatchers("/examenes/**" ).authenticated()
-                .antMatchers("/medicos/**" ).authenticated()
-                .antMatchers("/menus/**" ).authenticated()
+                .antMatchers("/consultas/**" ).authenticated()//.authenticated()               
+                .antMatchers("/especialidades/**" ).authenticated()//.authenticated()
+                .antMatchers("/examenes/**" ).authenticated()//.authenticated()
+                .antMatchers("/medicos/**" ).authenticated()//.authenticated()
+                .antMatchers("/menus/**" ).authenticated()//.authenticated()
                 .antMatchers("/tokens/anular/**" ).permitAll()
-                .antMatchers("/tokens/**" ).authenticated()                
-                .antMatchers("/consultaexamenes/**" ).authenticated()
-                .antMatchers("/pacientes/**" ).authenticated();
+                .antMatchers("/tokens/**" ).authenticated()//.authenticated()
+                .antMatchers("/consultaexamenes/**" ).authenticated()//.authenticated()
+                .antMatchers("/pacientes/**" ).authenticated()//.authenticated()
+                .antMatchers("/signos/**" ).authenticated();// .authenticated()
                 
     }    
 
