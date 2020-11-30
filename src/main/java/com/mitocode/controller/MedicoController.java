@@ -35,7 +35,7 @@ public class MedicoController {
 	@Autowired
 	private IMedicoService service;
 	
-	@PreAuthorize("@authServiceImpl.tieneAcceso('listar')")
+	@PreAuthorize("@authServiceImpl.tieneAcceso('listarId')")
 	//@PreAuthorize("hasAuthority('ADMIN') or hasAuthority('USER')")
 	@GetMapping
 	public ResponseEntity<List<Medico>> listar() throws Exception{
